@@ -1,6 +1,6 @@
 name: Chrome Stable
 
-on: [pull_request]
+on: [workflow_dispatch]
 
 jobs:
   build:
@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Build the chrome-stable image
-      run: docker build --build-arg "USE_CHROME_STABLE=true" -t browserless/chrome:stable .
+      run: docker build --build-arg "USE_CHROME_STABLE=true" -t ghcr.io/volition-co/chrome:stable .
 
     - name: Test the chrome-stable image
-      run: docker run --ipc=host -e CI=true --entrypoint ./test.sh browserless/chrome:stable
+      run: docker run --ipc=host -e CI=true --entrypoint ./test.sh ghcr.io/volition-co/chrome:stable
