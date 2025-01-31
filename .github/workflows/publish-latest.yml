@@ -1,9 +1,6 @@
 name: Publish Latest Docker image
 
-on:
-  push:
-    branches:
-      - v1
+on: [workflow_dispatch]
 
 jobs:
   push_to_registry:
