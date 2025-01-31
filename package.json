@@ -1,6 +1,6 @@
 {
   "name": "browserless-chrome",
-  "version": "1.61.1",
+  "version": "1.61.2",
   "description": "Chrome-as-a-service on your own hardware or in the cloud.",
   "repository": "browserless/chrome",
   "engines": {
@@ -89,10 +89,11 @@
       ]
     },
     "chrome-stable": {
-      "puppeteer": "21.9.0",
-      "chromeRevision": "121.0.6167.85",
+      "puppeteer": "24.1.1",
+      "chromeRevision": "132.0.6834.110",
       "platforms": [
-        "linux/amd64"
+        "linux/amd64",
+        "linux/arm64"
       ]
     }
   },
