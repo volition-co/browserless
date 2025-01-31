@@ -5,11 +5,28 @@ on: [workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Build the chrome-stable image
-      run: docker build --build-arg "USE_CHROME_STABLE=true" -t ghcr.io/volition-co/chrome:stable .
+    - uses: actions/checkout@v4
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - uses: depot/setup-action@v1
+    - uses: depot/build-push-action@v1
+      with:
+        project: t1p9wsgkb3
+        context: .
+        push: true
+        tags: |
+          ghcr.io/volition-co/chrome:stable
+        platforms: linux/arm64, linux/amd64
 
     - name: Test the chrome-stable image
       run: docker run --ipc=host -e CI=true --entrypoint ./test.sh ghcr.io/volition-co/chrome:stable
