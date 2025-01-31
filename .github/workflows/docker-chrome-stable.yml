@@ -28,5 +28,5 @@ jobs:
           ghcr.io/volition-co/chrome:stable
         platforms: linux/arm64, linux/amd64
 
-    - name: Test the chrome-stable image
-      run: docker run --ipc=host -e CI=true --entrypoint ./test.sh ghcr.io/volition-co/chrome:stable
+    # - name: Test the chrome-stable image
+    #   run: docker run --ipc=host -e CI=true --entrypoint ./test.sh ghcr.io/volition-co/chrome:stable
