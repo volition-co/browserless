@@ -197,7 +197,7 @@ export class PuppeteerProvider {
       (done: IDone) => {
         const doneOnce = _.once((err?: Error) => {
           if (job.browser) {
-            job.browser.off('disconnected', doneOnce);
+            job.browser.removeListener('disconnected', doneOnce);
             job.browser._browserProcess.removeListener('exit', doneOnce);
           }
           done(err);
@@ -453,7 +453,7 @@ export class PuppeteerProvider {
 
       const doneOnce = _.once((err) => {
         if (job.browser) {
-          job.browser.off('disconnected', doneOnce);
+          job.browser.removeListener('disconnected', doneOnce);
           job.browser._browserProcess.removeListener('exit', doneOnce);
         }
         done(err);
@@ -698,7 +698,7 @@ export class PuppeteerProvider {
 
   private async newPage(browser: IBrowser) {
     if (this.config.functionEnableIncognitoMode) {
-      const browserContext = await browser.createBrowserContext();
+      const browserContext = await browser.createIncognitoBrowserContext();
       return await browserContext.newPage();
     }
     return browser.newPage();
