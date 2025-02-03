@@ -621,7 +621,7 @@ export const launchChrome = async (
   const injectedPuppeteer = await puppeteerHook(opts);
 
   // as any due to compatibility issues with pptr 16 <
-  const finalLaunch = launchArgs as any;
+  const finalLaunch = { ...launchArgs, defaultViewport: { width: 1200, height: 800 } } as any;
   const browserServerPromise = injectedPuppeteer
     ? injectedPuppeteer.launch(finalLaunch)
     : launchArgs.playwright
