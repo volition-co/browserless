@@ -372,7 +372,6 @@ export const defaultLaunchArgs = {
   playwright: false,
   stealth: DEFAULT_STEALTH,
   meta: null,
-  defaultViewport: {width: 1200, height: 799},
 };
 
 /*
